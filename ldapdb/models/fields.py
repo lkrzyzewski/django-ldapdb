@@ -364,15 +364,15 @@ DateTimeField.register_lookup(GteLookup)
 DateTimeField.register_lookup(InLookup)
 
 
-EPOCH = timezone.utc.localize(datetime.datetime.utcfromtimestamp(0))
+#EPOCH = timezone.utc.localize(datetime.datetime.utcfromtimestamp(0))
 
 
 def datetime_from_timestamp(ts):
-    return timezone.utc.localize(datetime.datetime.utcfromtimestamp(ts))
+    return datetime.datetime.fromtimestamp(ts)
 
 
 def timestamp_from_datetime(dt):
-    return int((timezone.utc.normalize(dt) - EPOCH).total_seconds())
+    return dt.timestamp()
 
 
 class TimestampField(LdapFieldMixin, fields.DateTimeField):
